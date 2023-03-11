@@ -6,7 +6,7 @@
 package literals;
 
 /**
- *
+ A Java literal is a syntactic element
  * @author JOWEN
  */
 public class Literals {
