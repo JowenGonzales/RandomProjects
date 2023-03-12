@@ -14,4 +14,5 @@ public class HOBLiterals {
     int bin = 0b1101110; // '0b' prefix
     int oct = 0156; // '0' prefix
     int hex = 0x6E; // '0x' prefix
+    
 }

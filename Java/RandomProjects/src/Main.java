@@ -8,10 +8,10 @@
  *
  * @author JOWEN
  */
+import algorithms.FibonacciSequence;
 import literals.Literals;
 public class Main {
     public static void main(String[] args) {
-        System.out.println("this is the Main Class");
         
     }
 }
