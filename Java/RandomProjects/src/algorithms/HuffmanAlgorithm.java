@@ -5,6 +5,7 @@
  */
 package algorithms;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.PriorityQueue;
 
@@ -60,9 +61,60 @@ public class HuffmanAlgorithm {
     }
     // Compress Algorithm
     public static String compress(String input) {
+        Map<Character, Integer> freqTable = new HashMap<>();
+        for (char c : input.toCharArray()) {
+            freqTable.put(c, freqTable.getOrDefault(c, 0) + 1);
+        }
+        Node root = buildTree(freqTable);
+        
+        // Generate Code Table
+        Map <Character, String> codeTable = new HashMap<>();
+        generateCodeTable(root, "", codeTable);
+        
+        // Compress the String
+        StringBuilder sb = new StringBuilder();
+        for (char c : input.toCharArray()) {
+            sb.append(codeTable.get(c));
+        }
+        return sb.toString();
     }
     
-    public HuffmanAlgorithm() {
-        
+    // Decompress Algorithm
+    
+    public static String decompress(String compressed, Node root) {
+        StringBuilder sb = new StringBuilder();
+        Node current = root;
+        for (char bit : compressed.toCharArray()) {
+            if (bit == '0') {
+                current = current.left;
+            } else {
+                current = current.right;
+            }
+            if (current.c != '\0') {
+                sb.append(current.c);
+                current = root;
+            }
+        }
+        return sb.toString();
+    }
+    
+    
+    
+    public static void main(String[] args) {
+        String input = "Hello World";
+        String compressed = compress(input);
+
+        // Build frequency table
+        Map<Character, Integer> freqTable = new HashMap<>();
+        for (char c : input.toCharArray()) {
+            freqTable.put(c, freqTable.getOrDefault(c, 0) + 1);
+        }
+
+        // Build Huffman tree
+        Node root = buildTree(freqTable);
+
+        String decompressed = decompress(compressed, root);
+        System.out.println("Compressed string: " + compressed);
+        System.out.println("Decompressed string: " + decompressed);
     }
 }
