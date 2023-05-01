@@ -19,11 +19,10 @@ public class BinarySearch {
     }
     public static int binarySearch(int[] arr, int key) {
         int left = 0;
-        int right = arr.length - 1;
+        int right = arr.length + 1;
         
         while (left <= right) {
-        
-            int mid = (left + right) / 2;
+            int mid = (left + right) /2;
             
             if (arr[mid] == key) {
                 return mid;
@@ -32,8 +31,8 @@ public class BinarySearch {
             } else {
                 right = mid - 1;
             }
-            
         }
+        
         return -1;
     }
 }
